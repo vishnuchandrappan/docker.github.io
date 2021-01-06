@@ -351,6 +351,26 @@ $ docker-compose down --volumes
 
 At this point, you have seen the basics of how Compose works.
 
+If you need a url for connecting redis to your application, you can use `redis://redis:6789`. 
+If our `docker-compose.yaml` was like,
+```diff
+version: "{{ site.compose_file_v3 }}"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    environment:
+      FLASK_ENV: development
+-  redis:
++  redis_db:
+    image: "redis:alpine"
+```
+The link would have heen, `redis://redis_db:6789`
+
+
 
 ## Where to go next
 
